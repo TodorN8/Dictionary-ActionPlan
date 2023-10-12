@@ -1,0 +1,62 @@
+using System;
+using System.IO;
+using System.Collections.Generic;
+
+class DictionaryM5
+{
+    public static void Main(string[] args)
+    {
+        int[] A = new int[10];
+        for(int i = 0; i < 10; i++){
+            A[i] = Convert.ToInt32(Console.ReadLine());
+        }
+
+        // Declare a dictionary of integer type
+        Dictionary<int, int> dictionary = new Dictionary<int, int>();
+
+        foreach(int a in A)
+        {
+            if (dictionary.ContainsKey(a))
+                dictionary[a]++;
+            else
+                dictionary[a] = 1;
+        }
+
+        // Count the frequency of all the elements
+        foreach(KeyValuePair<int, int> num in dictionary)
+        {
+            Console.WriteLine($"The frequency of {num.Key} is: " + num.Value);
+        }
+
+        // Print the element with the largest frequency
+        int bestkey = 0;
+        int Frequency = int.MinValue;
+
+        foreach (KeyValuePair<int, int> num in dictionary)
+        {
+            if (num.Value > Frequency)
+            {
+                bestkey = num.Key;
+                Frequency = num.Value;
+            }
+        }
+        Console.WriteLine($"The frequency is: {Frequency}");
+
+        // Print the smallest element in the array
+        int smallestValue = int.MaxValue;
+
+        foreach (int element in dictionary.Values)
+        {
+            if (element < smallestValue)
+            smallestValue = element;
+        }
+        Console.WriteLine($"The smallest element is: {smallestValue}");
+
+        // Print the values present in the dictionary separated by a space
+        foreach(KeyValuePair<int, int> value in dictionary)
+        {
+            Console.WriteLine(value.Value);
+            Console.Write(" ");
+        }
+    }
+}
